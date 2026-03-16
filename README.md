@@ -1,118 +1,191 @@
-# EX_ENGSE608
+# Meeting Management Application
 
-สอบปฏิบัติปลายภาค 2/68
-รายวิชา: ENGSE608 Mobile Devices Application Design and Development รูปแบบสอบ: ปฏิบัติเดี่ยว
-เวลา: 6 ชั่วโมง
-การส่งงาน: ส่งลิงก์ GitHub และไฟล์ APK/ภาพหน้าจอ/README ตามที่กําหนด
-รหัส 67545210068-2 ชื่อ-สกุล ณัฐพงศ์ จันทร์สิงห์ เลขที่21
-คําชี้แจงข้อสอบ
-1. เงื่อนไขกลางของทุกโจทย์
-ผู้เข้าสอบต้องพัฒนา Mobile App ด้วย Flutter โดยมีเงื่อนไขดังนี้
-1.1 เทคโนโลยีที่ต้องใช้
--Flutter
--Provider สําหรับจัดการ state
--Local Database เช่น SQLite (sqflite) หรือฐานข้อมูลภายในเครื่องที่มีโครงสร้างตารางชัดเจน แยกโครงสร้างโปรเจกอย่างเหมาะสม เช่น
--models 
--providers
--services/database
--screens
--widgets
-1.2 ความสามารถขั้นต่ําที่ต้องมี 
-ทุกแอปต้องมีฟังก์ชันหลักดังนี้ 
--แสดงรายการข้อมูล 
--เพิ่มข้อมูล 
--แก้ไขข้อมูล 
--ลบข้อมูล
--ค้นหาหรือกรองข้อมูลอย่างน้อย 1 รูปแบบ 
--มีหน้าสรุปผล/แดชบอร์ดอย่างน้อย 1 หน้า
--ใช้ Provider เชื่อมการทํางานระหว่าง UI และฐานข้อมูล
--ใช้ Local Database เก็บข้อมูลจริงในเครื่อง
--มี validation ของข้อมูลในฟอร์ม
--UI ใช้งานได้จริง อ่านง่าย เป็นระเบียบ
-การกำหนดค่าแอป
-เปลี่ยนชื่อ package name ของแอปที่สร้าง (com ชื่อนักศึกษา ชื่อโปรเจ็ค) เปลี่ยน icon app ให้เหมาะสมกับแอปที่พัฒนา
+## Project Title
+Meeting Management Application (Flutter + Provider + SQLite)
 
-1.3 ข้อกําหนดเชิงเทคนิค
-ทุกโจทย์ให้มีข้อมูลอย่างน้อย 1 ตารางหลัก และแนะนําให้มี 2 ตาราง ขึ้นไป
-ตัวอย่างโครงสร้างขั้นต่ํา
--ตารางข้อมูลหลัก
--ตารางประเภท / หมวดหมู่ / สถานะ 
-ทุกแอปต้องมีอย่างน้อย 4 หน้า
--Home / Dashboard
--List Screen
--Add/Edit Form Screen
--Detail Screen So Summary Screen
-1.4 การใช้อินเทอร์เน็ต
-อนุญาตให้ค้นคว้าบนอินเทอร์เน็ตได้ทุกชนิด เช่น
--เอกสาร Flutter
--Stack Overflow
--YouTube
--Al tools
-ข้อห้าม
-ดาวน์โหลดโปรเจกต์ของผู้อื่นมาแก้ขื่อแล้วส่ง clone template แอปสําเร็จรูปมาใช้ทั้งระบบ คัดลอกงานเพื่อนร่วมสอบ
-1.5 การส่งงาน
-ผู้เข้าสอบต้องส่ง
--GitHub Repository
--README.md
--ภาพหน้าจอแอปอย่างน้อย 4 ภาพ
--ไฟล์ APK หรือวิธีรันอย่างชัดเจน
-README ต้องมี
--ชื่อโจทย์ 
--ชื่อผู้จัดทํา
--รายละเอียดฟังก์ชัน
--โครงสร้างฐานข้อมูล / ER แบบง่าย 
--package ที่ใช้ 
--วิธีรันโปรเจกต์
-2.เกณฑ์การประเมิน (100 คะแนน) 
-2.1 การทํางานของแอป (40 คะแนน) 
-2.2 การใช้ Provider (15 คะแนน) 
-2.3 การใช้ Local Database (20 คะแนน)
-2.4 UI/UX และ Validation (10 คะแนน)
-2.5 Dashboard / Summary (10 คะแนน) 
-2.6 GitHub / README / ความเรียบร้อย (5 คะแนน)
+## Author
+Name: Nattapong Jansing  
+Student ID: 67543210068-2
 
-3.ข้อกําหนดร่วมของโจทย์
-ให้นักศึกษาพัฒนา Mobile Application ด้วย Flutter ตามหัวข้อที่ได้รับมอบหมาย โดยต้องใช้
--Provider สําหรับจัดการสถานะข้อมูล
--Local Database สําหรับเก็บข้อมูลในเครื่อง
--เพิ่มข้อมูลตัวอย่างอย่างน้อย 10 รายการ ที่สอดคล้อง และเหมาะสมกับโจทย์
-โจทย์กําหนดฟีเจอร์ร่วมดังนี้
-ฟีเจอร์บังคับ
-1.เพิ่ม/แก้ไข/ลบข้อมูล
-2.ค้นหาอย่างน้อย 1 ช่อง
-3.กรองตามสถานะ/ประเภท/หมวดหมู่ อย่างน้อย 1 แบบ
-4.แสดงรายละเอียดข้อมูลรายรายการ
-5.สรุปผลบน Dashboard อย่างน้อย 3 ค่า เช่น 
--จํานวนทั้งหมด
--จํานวนตามสถานะ
--จํานวนตามประเภท
-6.ใช้ ChangeNotifier และ Provider 
-7.บันทึกข้อมูลลงฐานข้อมูลภายในเครื่อง 
-8.มีข้อความแจ้งเตือนเมื่อเพิ่ม/ลบ/บันทึกสําเร็จ 
-9.ป้องกันการกรอกข้อมูลไม่ครบ
-ฟีเจอร์เสริม +คะแนน 
--เรียงลําดับข้อมูล 
--สถิติแบบกราฟง่าย ๆ
--ใช้ Dismissible
--ใช้ DatePicker
--ใช้ Dropdown
--ใช้ dialog ยืนยันก่อนลบ
+---
 
-รหัส
-ชื่อ-สกุล ณัฐพงศ์ จันทร์สิงห์
-เลขที่ 21
-ชื่อแอป: บันทึกงานประชุม
-โจทย์ที่ 21: แอปบันทึกงานประชุม สร้างแอปบันทึกรายการประชุมและการติดตามผล
-ข้อมูลหลัก
--หัวข้อประชุม 
--วันที่
--ผู้รับผิดชอบ
--สถานะ
--รายละเอียดสรุป
--หมายเหตุ
-ฟังก์ชัน
--CRUD
--ค้นหา
--กรองตามสถานะหรือผู้รับผิดชอบ
--Dashboard แสดงจํานวนประชุม / งานค้าง / งานเสร็จ
-ดําเนินการตามข้อกําหนดในคําชี้แจงข้อสอบ ข้อ 1-3
+# Application Description
+
+This application is a mobile app developed using **Flutter** for managing meeting records.  
+Users can create, view, update, and delete meeting information stored in a **SQLite local database**.  
+The app also provides a dashboard that summarizes meeting statistics.
+
+---
+
+# Application Features
+
+1. Dashboard Screen
+   - Display total meetings
+   - Display pending meetings
+   - Display completed meetings
+
+2. Meeting List
+   - Show all meetings stored in the database
+   - Search meeting by title or responsible person
+
+3. Add Meeting
+   - Create a new meeting record
+   - Form validation prevents empty fields
+
+4. Edit Meeting
+   - Update meeting information
+
+5. Delete Meeting
+   - Confirmation dialog before deleting
+
+6. Meeting Detail
+   - Show detailed meeting information
+
+---
+
+# Database Structure
+
+This application uses **SQLite** as a local database.
+
+Table: `meetings`
+
+| Field | Type | Description |
+|------|------|-------------|
+| id | INTEGER | Primary key |
+| title | TEXT | Meeting title |
+| date | TEXT | Meeting date |
+| responsible | TEXT | Responsible person |
+| status | TEXT | Meeting status (Pending / Done) |
+| summary | TEXT | Meeting summary |
+| note | TEXT | Additional note |
+
+---
+
+# Simple ER Diagram
+
+```
+Meeting
+------------------------
+id (PK)
+title
+date
+responsible
+status
+summary
+note
+```
+
+---
+
+# Packages Used
+
+The following packages are used in this project:
+
+```
+provider
+sqflite
+path
+```
+
+Explanation:
+
+- **provider** → state management  
+- **sqflite** → SQLite local database  
+- **path** → manage database file path  
+
+---
+
+# Project Structure
+
+```
+lib
+│
+├── models
+│   └── meeting.dart
+│
+├── providers
+│   └── meeting_provider.dart
+│
+├── services
+│   └── database_helper.dart
+│
+├── screens
+│   ├── home_screen.dart
+│   ├── list_screen.dart
+│   ├── add_edit_screen.dart
+│   └── detail_screen.dart
+│
+├── widgets
+│   └── meeting_card.dart
+│
+└── main.dart
+```
+
+---
+
+# Screenshots
+
+## Dashboard
+<img src="Screenshots/dashboard.png" width="400">
+
+## Meeting List
+<img src="Screenshots/list.png" width="400">
+
+## Add Meeting
+<img src="Screenshots/add.png" width="400">
+
+## Detail Screen
+<img src="Screenshots/Detail.png" width="400">
+
+## Edit Form
+<img src="Screenshots/Change.png" width="400">
+
+## Delete Confirmation
+<img src="Screenshots/Are_u_sure_about_that.png" width="400">
+
+## Validation (Empty Field Protection)
+<img src="Screenshots/Edit_anti_empty.png" width="400">
+
+---
+
+# How to Run the Project
+
+1. Clone the repository
+
+```
+git clone https://github.com/0rea/EX_ENGSE608.git
+```
+
+2. Install dependencies
+
+```
+flutter pub get
+```
+
+3. Run the application
+
+```
+flutter run
+```
+
+---
+
+# APK File
+
+APK file can be built using the command:
+
+```
+flutter build apk
+```
+
+The APK file will be located in:
+
+```
+build/app/outputs/flutter-apk/app-release.apk
+```
+
+---
+
+# GitHub Repository
+
+https://github.com/0rea/EX_ENGSE608
