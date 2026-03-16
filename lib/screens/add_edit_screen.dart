@@ -5,7 +5,10 @@ import '../models/meeting.dart';
 import '../providers/meeting_provider.dart';
 
 class AddEditScreen extends StatefulWidget {
-  const AddEditScreen({super.key});
+
+  final Meeting? meeting;
+
+  const AddEditScreen({super.key, this.meeting});
 
   @override
   State<AddEditScreen> createState() => _AddEditScreenState();
@@ -23,16 +26,34 @@ class _AddEditScreenState extends State<AddEditScreen> {
   String status = "Pending";
 
   @override
+  void initState() {
+    super.initState();
+
+    if (widget.meeting != null) {
+      titleController.text = widget.meeting!.title;
+      responsibleController.text = widget.meeting!.responsible;
+      summaryController.text = widget.meeting!.summary;
+      noteController.text = widget.meeting!.note;
+      status = widget.meeting!.status;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
 
     final provider = Provider.of<MeetingProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Add Meeting")),
+      appBar: AppBar(
+        title: Text(widget.meeting == null ? "Add Meeting" : "Edit Meeting"),
+      ),
+
       body: Padding(
         padding: const EdgeInsets.all(16),
+
         child: Form(
           key: _formKey,
+
           child: Column(
             children: [
 
@@ -40,17 +61,24 @@ class _AddEditScreenState extends State<AddEditScreen> {
                 controller: titleController,
                 decoration: const InputDecoration(labelText: "Title"),
                 validator: (v) =>
-                    v!.isEmpty ? "Enter title" : null,
+                    v == null || v.isEmpty ? "Please enter title" : null,
               ),
+
+              const SizedBox(height: 10),
 
               TextFormField(
                 controller: responsibleController,
                 decoration:
                     const InputDecoration(labelText: "Responsible"),
+                validator: (v) =>
+                    v == null || v.isEmpty ? "Please enter responsible person" : null,
               ),
+
+              const SizedBox(height: 10),
 
               DropdownButtonFormField(
                 value: status,
+                decoration: const InputDecoration(labelText: "Status"),
                 items: ["Pending", "Done"]
                     .map((e) => DropdownMenuItem(
                           value: e,
@@ -64,11 +92,17 @@ class _AddEditScreenState extends State<AddEditScreen> {
                 },
               ),
 
+              const SizedBox(height: 10),
+
               TextFormField(
                 controller: summaryController,
                 decoration:
                     const InputDecoration(labelText: "Summary"),
+                validator: (v) =>
+                    v == null || v.isEmpty ? "Please enter summary" : null,
               ),
+
+              const SizedBox(height: 10),
 
               TextFormField(
                 controller: noteController,
@@ -80,22 +114,54 @@ class _AddEditScreenState extends State<AddEditScreen> {
 
               ElevatedButton(
                 child: const Text("Save"),
+
                 onPressed: () {
 
                   if (_formKey.currentState!.validate()) {
 
-                    final meeting = Meeting(
-                      title: titleController.text,
-                      date: DateTime.now().toString(),
-                      responsible: responsibleController.text,
-                      status: status,
-                      summary: summaryController.text,
-                      note: noteController.text,
-                    );
+                    if (widget.meeting == null) {
 
-                    provider.addMeeting(meeting);
+                      final meeting = Meeting(
+                        title: titleController.text,
+                        date: DateTime.now().toString(),
+                        responsible: responsibleController.text,
+                        status: status,
+                        summary: summaryController.text,
+                        note: noteController.text,
+                      );
+
+                      provider.addMeeting(meeting);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Meeting added"),
+                        ),
+                      );
+
+                    } else {
+
+                      final meeting = Meeting(
+                        id: widget.meeting!.id,
+                        title: titleController.text,
+                        date: widget.meeting!.date,
+                        responsible: responsibleController.text,
+                        status: status,
+                        summary: summaryController.text,
+                        note: noteController.text,
+                      );
+
+                      provider.updateMeeting(meeting);
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Meeting updated"),
+                        ),
+                      );
+
+                    }
 
                     Navigator.pop(context);
+
                   }
                 },
               )
